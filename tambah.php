@@ -20,9 +20,9 @@
                 <h5 class="card-title">Tambahkan Mahasiswa</h5>
                 <form action="proses_tambah.php" method="post" id="tambah-mahasiswa-form">
                     <input class="form-control mt-3" type="text" placeholder="NIM" name="nim" id="nim">
-                    <input class="form-control mt-3" type="text" placeholder="Nama Mahasiswa" name="nama" required>
-                    <input class="form-control mt-3" type="date" placeholder="Tanggal Lahir" name="tanggal_lahir" required>
-                    <input class="form-control mt-3" type="text" placeholder="Alamat" name="alamat" required>
+                    <input class="form-control mt-3" type="text" placeholder="Nama Mahasiswa" name="nama">
+                    <input class="form-control mt-3" type="date" placeholder="Tanggal Lahir" name="tanggal_lahir">
+                    <input class="form-control mt-3" type="text" placeholder="Alamat" name="alamat">
                     <select class="form-control mt-3" name="kelas" id="kelas">
                         <?php
                         // Fetch data from the "items" table
@@ -62,7 +62,7 @@
                         }
                         ?>
                     </select>
-                    <button type="submit" class="btn btn-info mt-5">Simpan</button>
+                    <input type="submit" id="submitBtn" value="Simpan" class="btn btn-primary mt-3" disabled>
                 </form>
             </div>
         </div>
@@ -70,6 +70,25 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="validateNIM.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("input").on("input", function() {
+                var allFilled = true;
+                $("input").each(function() {
+                    if ($(this).val() === "") {
+                        allFilled = false;
+                        return false; // Exit the loop if any field is empty
+                    }
+                });
+
+                if (allFilled == true) {
+                    $("#submitBtn").prop("disabled", false);
+                } else {
+                    $("#submitBtn").prop("disabled", true);
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

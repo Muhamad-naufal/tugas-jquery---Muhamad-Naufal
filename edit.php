@@ -95,6 +95,47 @@
                 document.querySelector("form").submit();
             }
         });
+        document.addEventListener("DOMContentLoaded", function() {
+            // Ambil referensi ke elemen formulir dan tombol submit
+            const form = document.querySelector("form");
+            const submitButton = document.getElementById("submitButton");
+
+            // Simpan nilai awal input saat halaman dimuat
+            const initialFormValues = {
+                NIM: "<?php echo $NIM ?>",
+                nama: "<?php echo $nama ?>",
+                tanggal_lahir: "<?php echo $tanggal ?>",
+                alamat: "<?php echo $alamat ?>",
+                kelas: "<?php echo $kelas ?>",
+                jurusan: "<?php echo $jurusan ?>",
+                fakultas: "<?php echo $fakultas ?>"
+            };
+
+            // Fungsi untuk memeriksa apakah ada perubahan pada formulir
+            function isFormModified() {
+                const currentFormValues = {
+                    NIM: form.NIM.value,
+                    nama: form.nama.value,
+                    tanggal_lahir: form.tanggal_lahir.value,
+                    alamat: form.alamat.value,
+                    kelas: form.kelas.value,
+                    jurusan: form.jurusan.value,
+                    fakultas: form.fakultas.value
+                };
+
+                // Memeriksa apakah nilai setiap input sama dengan nilai awalnya
+                return Object.keys(initialFormValues).some(key => initialFormValues[key] !== currentFormValues[key]);
+            }
+
+            // Fungsi untuk mengubah status tombol submit
+            function toggleSubmitButton() {
+                submitButton.disabled = !isFormModified();
+            }
+
+            // Memanggil fungsi saat halaman dimuat dan setiap kali ada perubahan pada formulir
+            document.addEventListener("input", toggleSubmitButton);
+            toggleSubmitButton();
+        });
     </script>
 
 </body>

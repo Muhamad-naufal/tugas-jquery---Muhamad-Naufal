@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 09 Nov 2023 pada 08.30
+-- Waktu pembuatan: 09 Nov 2023 pada 10.19
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -103,7 +103,9 @@ CREATE TABLE `mahasiswa` (
 --
 
 INSERT INTO `mahasiswa` (`NIM`, `nama_lengkap`, `tanggal_lahir`, `alamat`, `id_kelas`, `id_jurusan`, `id_fakultas`) VALUES
-('000-001', 'Muhamad Naufal Edited', '2002-05-14', 'Purworejo', 1, 1, 2);
+('000-001', 'Muhamad Naufal', '2002-05-14', 'Purworejo', 1, 1, 2),
+('000-002', 'Haary Potter', '2002-12-02', 'Makassar', 1, 1, 2),
+('000-003', 'Alan Walker', '2002-02-12', 'London', 1, 1, 1);
 
 --
 -- Indexes for dumped tables
